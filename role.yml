@@ -1,0 +1,11 @@
+---
+- name: s3-tools
+  hosts: all
+  user: root
+  become: true
+  roles:
+  - "s3-tools"
+  vars_files:
+  - vars/versions.yml
+  - vars/secrets.yml
+  - vars/vault.yml

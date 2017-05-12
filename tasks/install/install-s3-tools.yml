@@ -1,0 +1,30 @@
+---
+- name: make s3tools folder
+  file: path={{ item }}
+        state=directory
+        recurse=yes
+        owner=root
+        group=root
+        mode=0755
+
+  with_items:
+  - "{{ s3tools_download }}"
+
+
+- name: download s3 tools
+  get_url: url=https://github.com/s3tools/s3cmd/releases/download/{{ s3tools_version }}/{{ s3tools_archive }}
+           dest={{ s3tools_download }}{{ s3tools_archive }}
+           force=no
+
+
+- name: unpack s3tools archive
+  command: tar -xvzf {{ s3tools_archive }} chdir={{ s3tools_download }} creates={{ s3tools_download }}{{ s3tools_folder }}
+
+
+- name: remove s3 tools archive
+  file: path={{ s3tools_download }}{{ s3tools_archive }}
+        state=absent
+
+
+- name: install s3 tools
+  command: python setup.py install chdir={{ s3tools_download }}{{ s3tools_folder }} creates=/usr/local/bin/s3cmd

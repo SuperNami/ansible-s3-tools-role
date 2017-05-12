@@ -1,0 +1,8 @@
+---
+# S3 tools archive
+# https://github.com/s3tools/s3cmd/releases
+#
+s3tools_download: /opt/downloads/s3tools/
+s3tools_version: v1.6.1
+s3tools_archive: s3cmd-1.6.1.tar.gz
+s3tools_folder: s3cmd-1.6.1

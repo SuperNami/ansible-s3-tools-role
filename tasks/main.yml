@@ -1,0 +1,7 @@
+---
+- include: install/install-s3-tools.yml
+  tags: install_s3_tools
+
+
+- include: configure/configure-s3-tools.yml
+  tags: configure_s3_tools
